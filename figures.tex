@@ -1,0 +1,73 @@
+\documentclass[12pt]{report}
+\usepackage{latexsym}
+\usepackage[fleqn]{amsmath}
+%\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{emptypage}
+\usepackage{enumitem}
+%\usepackage{enumitem,wrapfig}
+\usepackage[dvipsnames,table]{xcolor}
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usepackage[siunitx]{circuitikz}
+\usepackage{rotating}
+\usepackage{tcolorbox}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{array}
+
+\usepackage{multirow}
+\usepackage{curves}
+
+\usetikzlibrary{shapes.geometric} 
+\usetikzlibrary{hobby}
+\usetikzlibrary{shadings}
+\usetikzlibrary{arrows}
+\usetikzlibrary{intersections}
+\usetikzlibrary{patterns}
+\usetikzlibrary{snakes}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1em}
+\pagestyle{empty}
+
+\definecolor{color1}{rgb}{0.8,0.0,0.0}%rojo
+\definecolor{color2}{rgb}{0.19,0.55,0.91}%azul
+\definecolor{color3}{rgb}{1.0,0.75,0.0}%amarillo
+\definecolor{color4}{rgb}{0.0,0.5,0.0}%verde
+\definecolor{color5}{rgb}{0.8,0.33,0.0}%cafe
+\definecolor{color6}{rgb}{0.45,0.31,0.59}%violeta
+
+%\pagestyle{plain}
+
+\begin{document}
+\begin{tikzpicture} [scale=0.6]
+%name=arboles
+%\draw [help lines,red!50] (0,0) grid (16,4);
+%suelo
+\draw [color4!40,line width=1mm] (-1,0)--++(20,0);
+%trees
+\foreach \x [evaluate={\w=3*\x},evaluate={\z=2/(0.2*\x+1)}]in {0,...,6}{
+%troncos
+\shade[top color=color5!80, bottom color=color5!50, shading angle={30}](\w,0)rectangle++(0.4,\z);
+%copas
+\shade[top color=color4!40, bottom color=color4!80, shading angle={30}](\w-0.5,\z+0.6)circle(0.7);
+\shade[top color=color4!40, bottom color=color4, shading angle={30}](\w+0.9,\z+0.8)circle(0.5);
+\shade[top color=color4!40, bottom color=color4, shading angle={30}](\w+0.2,\z+1)circle(1);
+}
+
+\end{tikzpicture}
+\linebreak
+\begin{tikzpicture}
+%name=diagrama
+    \def \n {5}
+    \def \radius {3cm}
+    \def \margin {8} % margin in angles, depends on the radius
+    
+    \foreach \s in {1,...,\n}
+    {
+      \node[draw, circle] at ({360/\n * (\s - 1)}:\radius) {$\s$};
+      \draw[->, >=latex] ({360/\n * (\s - 1)+\margin}:\radius) 
+        arc ({360/\n * (\s - 1)+\margin}:{360/\n * (\s)-\margin}:\radius);
+    }
+    \end{tikzpicture}
+\end{document}
