@@ -75,6 +75,7 @@ def main():
                 for _, figure in enumerate(tikz_figures):
                     tikz_position = figure.span()
                     figure_name = getTikzFigureName(figure)
+                    print('figure name: ', figure_name)
                     absolute_figure_name = os.path.join(png_dir, figure_name)
         # 4. crear nuevos archivos
                     writeFigurefile(latex_file,absolute_figure_name, preamble, tikz_position)
